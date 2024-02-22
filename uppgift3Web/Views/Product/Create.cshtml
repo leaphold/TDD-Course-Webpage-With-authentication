@@ -1,0 +1,56 @@
+@model Product
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Mvc 
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+  </head>
+
+  <body>
+    <h2 class="mt-4">Create Product</h2>
+    
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form asp-action="Create" method="post" asp-antiforgery="true">
+      <div>
+        <div class="form-group">
+          <label asp-for="Name" class="form-label mt-4"></label>
+          <input asp-for="Name" class="form-control" type="text">
+          <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label asp-for="Description" class="form-label mt-4"></label>
+          <textarea asp-for="Description" class="form-control" id="exampleTextarea" rows="3"></textarea>
+          <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label asp-for="Price" class="form-label mt-4"></label>
+          <input asp-for="Price" class="form-control" type="text">
+          <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+          <label asp-for="CategoryId" class="form-label mt-4"></label>
+          <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="form-control">
+            <option value="">Select a Category</option>
+          </select>
+          <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+      </div>
+
+      <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+      <button type="submit" class="btn btn-primary m-4">Create</button>
+    </form>
+
+    @section scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+  </body>
+</html>

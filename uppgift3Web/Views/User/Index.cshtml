@@ -1,0 +1,30 @@
+@model UsersIndexViewModel
+
+
+<h1> User controller </h1>
+
+<p> This are the user controller </p>
+
+  @foreach (var user in Model.Users)
+  {
+
+    <p>
+    <b> @user.User.Email </b>
+
+        @foreach (var role in user.Roles)
+        {
+          <b> @role </b>
+        }
+          <form asp-action="ChangeRole" asp-controller="User">
+          <input hidden name="userId" value="@user.User.Id" />
+          <input hidden  name="newRole" value="Admin" />
+        <button  class="btn btn-primary m-2">Change to Admin</button>
+          </form>
+          <form asp-action="ChangeRole" asp-controller="User">
+          <input hidden name="userId" value="@user.User.Id" />
+          <input hidden name="newRole" value="User" />
+        <button class="btn btn-primary m-2">Change to User</button>
+          </form>
+        
+    </p>
+}

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+  <div class="row">
+    <h1>Available Products</h1>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Description</th>
+          <th>Product Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td><a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a></td>
+            <td><a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.Id">Delete</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div>
+      <a asp-action="Create" class="btn btn-primary">Create New</a>
+  </div>
+</body>
+</html>
+
+@section scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

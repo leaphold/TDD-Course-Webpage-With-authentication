@@ -1,0 +1,46 @@
+
+
+@{
+    ViewData["Title"] = "Home Page"; // Denna måste också ändras från NUll till det som är default för alla sidor
+}
+@model Product
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h2 class="text-primary">Delete Course</h2>
+<form asp-controller="Product" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="form-label mt-4"></label>
+                <input asp-for="Name" disabled class="form-control" type="text">
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Description" class="form-label mt-4"></label>
+                <textarea asp-for="Description" disabled class="form-control" id="exampleTextarea" rows="3"></textarea>
+            
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Price" class="form-label mt-4"></label>
+                <input asp-for="Price" disabled class="form-control" type="text">
+
+            </div>
+
+        </fieldset>
+
+                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+
+                <button type="submit" class="btn btn-danger m-4">Delete</button>
+</form>   
+</body>
+</html>
+
